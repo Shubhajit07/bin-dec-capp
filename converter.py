@@ -6,14 +6,12 @@ init()
 
 def clear():
     if name == 'nt': 
-
-        _ = system('cls') 
+    	_ = system('cls') 
 
     else: 
+    	 _ = system('clear') 
 
-        _ = system('clear') 
-
-
+#Defining dialog function
 def dialog(tool):
 	choice = input(colored("\n\nEnter 0 to exit\n1 to go to main menu\n2 To use this tool again: ","cyan"))
 	if choice=='0':
@@ -21,7 +19,7 @@ def dialog(tool):
 	elif choice=='1':
 		clear()
 		main()
-	elif choice =='2':
+	elif choice=='2' or choice=="":
 		clear()
 		if tool=="dtb":
 			sleep(0.1)
@@ -42,6 +40,7 @@ def dialog(tool):
 
 
 def main():
+	clear()
 	print(colored(
 	"""
 	|------------Tools list-------------|
@@ -82,7 +81,13 @@ def dtb():
 	while decimal==None:
 		#Handling Value Error
 		try:
-			dec_input = int(input(colored("Enter a decimal value: ","cyan")))
+			user_in = input(colored("Enter a decimal value: ","cyan"))
+			if user_in=="exit":
+				exit()
+			elif user_in=="main":
+				main()
+			else:
+				dec_input = int(user_in)
 		except ValueError:
 			print(colored("Please enter an integer value\n","yellow"))
 			sleep(0.1)
@@ -122,6 +127,10 @@ def btd():
 	while loop:
 		raw_in=input(colored("Please enter a binary value: ","cyan"))
 		rec_in=raw_in.replace(" ","")
+		if rec_in=="exit":
+			exit()
+		elif rec_in=="main":
+			main()
 		try:
 			for d in rec_in:
 				val=int(d)
